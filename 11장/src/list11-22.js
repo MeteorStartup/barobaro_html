@@ -1,0 +1,1 @@
+console.log(arr.shift());	// a. 맨 앞의 데이터 삭제 되었음

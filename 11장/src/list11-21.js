@@ -1,0 +1,1 @@
+console.log(arr.pop());		// 'last data'. 맨 끝의 삭제 되었음

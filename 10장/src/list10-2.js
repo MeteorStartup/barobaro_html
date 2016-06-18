@@ -1,0 +1,1 @@
+console.log(minsu + inyoung);	// 22300

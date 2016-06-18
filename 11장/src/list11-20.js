@@ -1,0 +1,1 @@
+console.log(arr.push('last data'));	//6, Array에 현재 저장된 전체 데이터의 갯수

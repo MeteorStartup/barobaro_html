@@ -1,0 +1,6 @@
+/* p 엘리먼트의 기본 스타일 주석 */
+p { 
+         margin: 5px; 
+         font-family: arial; 
+         color: blue; 
+}

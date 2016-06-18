@@ -1,0 +1,1 @@
+console.log("제 이름은 " + name + "이고 키는 " + height + "cm이며 몸무게는 " + weight + "kg입니다."); 	// "제 이름은 inyoung이고 키는 160cm이며 몸무게는 50kg입니다."

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <style>
+            /* Step5 메뉴 CSS처리 */
+            .header ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: auto;
+                border: 1px solid lightgrey;
+                background-color: #fff;
+            }
+
+            .header li {
+                float: left;
+            }
+
+            .header li a {
+                display: inline-block;
+                text-align: center;
+                padding: 14px 16px;
+                color: #242c42;
+                text-decoration: none;
+            }
+
+            .header li a.active {
+                color: white;
+                background-color:#86bc42;
+            }
+
+            .header li a:hover:not(.active) {
+                background-color: lightgrey;
+            }
+
+            .header li:last-child { 
+                float:right; 
+            }
+
+            .header .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f9f9f9;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: auto;
+            }
+
+            .header .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+                z-index: auto;
+            }
+
+            .header .dropdown-content input {
+                width: 100px;
+                color: black;
+                padding: 12px 30px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+
+            .header .dropdown:hover .dropdown-content {
+                display: block;
+            }
+            
+            
+            /* Step6 이미지 슬라이더 CSS처리*/
+            .img-slider{
+                margin: 40px 0 40px 0;
+            }
+           .slides {
+                padding: 0;
+                width: 809px;
+                height: 420px;
+                display: block;
+                margin: 0 auto;
+                position: relative;
+                overflow: hidden
+            }
+
+
+            .slides input { display: none; }
+
+            .slide-container { display: block; }
+
+            .slide {
+                top: 0;
+                opacity: 0;
+                width: 809px;
+                height: 420px;
+                display: block;
+                position: absolute;
+                transform: scale(0);
+                transition: all .7s ease-in-out;
+            }
+
+            .slide img {
+                width: 100%;
+                height: 100%;
+            }
+
+            .nav label {
+                width: 100px;
+                height: 100%;
+                display: none;
+                position: absolute;
+
+                opacity: 0;
+                z-index: 9;
+                cursor: pointer;
+
+                transition: opacity .2s;
+
+                color: #FFF;
+                font-size: 150pt;
+                text-align: center;
+                line-height: 380px;
+                background-color: rgba(255, 255, 255, .3);
+                text-shadow: 0px 0px 15px rgb(119, 119, 119);
+            }
+
+            .slide:hover + .nav label { opacity: 0.5; }
+
+            .nav label:hover { opacity: 1; }
+
+            .nav .next { right: 0; }
+
+            input:checked + .slide-container  .slide {
+                opacity: 1;
+                transform: scale(1);
+                transition: opacity 1s ease-in-out;
+            }
+
+            input:checked + .slide-container .nav label { display: block; }
+
+            .nav-dots {
+                width: 100%;
+                bottom: 9px;
+                height: 11px;
+                display: block;
+                position: absolute;
+                text-align: center;
+            }
+
+            .nav-dots .nav-dot {
+                top: -5px;
+                width: 11px;
+                height: 11px;
+                margin: 0 4px;
+                position: relative;
+                border-radius: 100%;
+                display: inline-block;
+                background-color: rgba(255, 255, 255, 0.6);
+            }
+
+            .nav-dots .nav-dot:hover {
+                cursor: pointer;
+                background-color: rgba(0, 0, 0, 0.8);
+            }
+
+            input#img-1:checked ~ .nav-dots label#img-dot-1,
+            input#img-2:checked ~ .nav-dots label#img-dot-2,
+            input#img-3:checked ~ .nav-dots label#img-dot-3,
+            input#img-4:checked ~ .nav-dots label#img-dot-4{
+                background: rgba(0, 0, 0, 0.8);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <ul>
+                <li><a class="active" href="#content">HTML5영화</a></li>
+                <li><a href="http://www.cine21.com/news">뉴스</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">영화정보</a>
+                    <div class="dropdown-content">
+                        <a href="http://www.cine21.com/movie/boxoffice/domestic">박스오피스</a>
+                        <a href="http://www.cine21.com/review">리뷰</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">영화포토</a>
+                    <div class="dropdown-content">
+                        <a href="http://www.cine21.com/photo/person">영화인</a>
+                        <a href="http://www.cine21.com/photo/festival">영화제</a>
+                        <a href="http://www.cine21.com/photo/cover">표지갤러리</a>
+                        <a href="http://www.cine21.com/photo/starb">스타의B컷</a>
+                    </div>
+                </li>
+                <li><a href="list12-starwars.html">스타워즈:깨어난 포스 특집</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn" style="width:150px;" name="logIn">Login</a>
+                    <div class="dropdown-content">
+                        <input type="text" id="username" placeholder="username">
+                        <input type="text" id="password" placeholder="password">
+                        <a href="#" id="logIn">LogIn</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="img-slider">
+                <ul class="slides">
+                    <input type="radio" name="radio-btn" id="img-1" checked />
+                    <li class="slide-container">
+                        <div class="slide">
+                            <img src="movie_cut1.JPG" />
+                        </div>
+                        <div class="nav">
+                            <label for="img-4" class="prev">&#x2039;</label>
+                            <label for="img-2" class="next">&#x203a;</label>
+                        </div>
+                    </li>
+                    <input type="radio" name="radio-btn" id="img-2" />
+                    <li class="slide-container">
+                        <div class="slide">
+                          <img src="movie_cut2.JPG" />
+                        </div>
+                        <div class="nav">
+                            <label for="img-1" class="prev">&#x2039;</label>
+                            <label for="img-3" class="next">&#x203a;</label>
+                        </div>
+                    </li>
+                    <input type="radio" name="radio-btn" id="img-3" />
+                    <li class="slide-container">
+                        <div class="slide">
+                          <img src="movie_cut3.jpg" />
+                        </div>
+                        <div class="nav">
+                            <label for="img-2" class="prev">&#x2039;</label>
+                            <label for="img-4" class="next">&#x203a;</label>
+                        </div>
+                    </li>
+                    <input type="radio" name="radio-btn" id="img-4" />
+                    <li class="slide-container">
+                        <div class="slide">
+                          <img src="movie_cut4.jpg" />
+                        </div>
+                        <div class="nav">
+                            <label for="img-3" class="prev">&#x2039;</label>
+                            <label for="img-1" class="next">&#x203a;</label>
+                        </div>
+                    </li>
+                    <li class="nav-dots">
+                      <label for="img-1" class="nav-dot" id="img-dot-1"></label>
+                      <label for="img-2" class="nav-dot" id="img-dot-2"></label>
+                      <label for="img-3" class="nav-dot" id="img-dot-3"></label>
+                      <label for="img-4" class="nav-dot" id="img-dot-4"></label>
+                    </li>
+                </ul>
+            </div>
+            <div class="row">
+                <h2>이벤트 목록</h2>
+                <div class="movie-event">
+                    <a href="#">
+                        <img src="movie_event1.jpg" />
+                    </a>
+                    <a href="#">
+                        <img src="movie_event2.jpg" />
+                    </a>
+                    <a href="#">
+                        <img src="movie_event3.jpg" />
+                    </a>
+                    <a href="#">
+                        <img src="movie_event4.jpg" />
+                    </a>
+                </div>
+                <div class="movie-info">
+                    <div class="area_tab_box" id="area_tab_box">
+                        <ul class="tab">
+                            <li>
+                                <a id="boxoffice_tab_left" class="btn_off">박스오피스</a>
+                            </li>
+                            <li class="last">
+                                <a id="boxoffice_tab_right" class="btn">상영예정작</a>
+                            </li>
+                        </ul>
+                        <div id="left_movie_info" style="display: block;">
+                            <ul class="box_office_charts">
+                                <li>
+                                    <strong class="tit">1.곡성_곽도원, 황정민 주연 </strong>
+                                </li>
+                                <li>
+                                    <span class="tit">2.캡틴 아메리카: 시빌 워</span>
+                                </li>
+                                <li>
+                                    <span class="tit">3.탐정 홍길동: 사라진 마을</span>
+                                </li>
+                                <li>
+                                    <span class="tit">4.다이버전트 시리즈: 얼리전트</span>
+                                </li>
+                                <li>
+                                    <span class="tit">5.극장판 안녕 자두야</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="right_movie_info" style="display: none;">
+                            <ul class="box_office_charts">
+                                <li>
+                                    <span class="tit">더 보이_윌리엄 브렌트벨 감독</span>
+                                </li>
+                                <li>
+                                    <span class="tit">계춘할망_창감독 (한국)</span>
+                                </li>
+                                <li>
+                                    <span class="tit">미나미 양장점의 비밀_미시마유키코 감독</span>
+                                </li>
+                                <li>
+                                    <span class="tit">싱 스트리트_존 카니 감독</span>
+                                </li>
+                                <li>
+                                    <span class="tit">하드코어 헨리_일리야 나이슐러 감독</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <h4>HTML5 Authors All Right Reserved.</h4>
+            <p>43 Jibong-ro, Wonmi-gu, Bucheon-si, Gyeonggi-do, 420-743, Korea</p>
+        </div>
+    </body>
+</html>

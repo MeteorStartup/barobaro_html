@@ -1,0 +1,1 @@
+consoloe.log(name + " " + height + " " + weight); 		// "inyoung 160 50"

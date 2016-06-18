@@ -1,0 +1,1 @@
+var minsu = 17000, inyoung = 5300;

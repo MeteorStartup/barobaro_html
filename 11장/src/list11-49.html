@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+        <script> 
+            $(document).ready(function(){
+                $("#flip").click(function(){
+                    $("#panel").slideDown("slow");
+                });
+            });
+        </script>
+
+        <style> 
+            #panel, #flip {
+                padding: 5px;
+                text-align: center;
+                background-color: yellowgreen;
+            }
+            #panel {
+                padding: 50px;
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div id="flip">클릭해 보세요</div>
+        <div id="panel">내용이 보입니다.</div>
+
+    </body>
+</html>
